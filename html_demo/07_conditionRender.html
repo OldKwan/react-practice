@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script type="text/babel">
+        // 一, 组件内根据不同条件返回不同结构
+        // function Loginstate(props){
+        //     if(props.isLogin == true){
+        //         return <h2>欢迎回来!</h2>
+        //     }else{
+        //         return <h2>请登录!</h2>
+        //     }
+        // }
+
+        // ReactDOM.render(
+        //     <Loginstate isLogin={true}/>,
+        //     document.getElementById('root')
+        // )
+
+        // 二, 组件内根据不同条件返回不同 子组件
+        // function Login() {
+        //     return <h2>欢迎回来!</h2>
+        // }
+        // function Logout() {
+        //     return <h2>请登录!</h2>
+        // }
+
+
+        // function Loginstate(props) {
+        //     if (props.isLogin == true) {
+        //         return <Login />
+        //     } else {
+        //         return <Logout />
+        //     }
+        // }
+
+        // ReactDOM.render(
+        //     <Loginstate isLogin={true} />,
+        //     document.getElementById('root')
+        // )
+
+        // && 运算符渲染组件
+        // && 左边为 true, 才会渲染右边结构; false则整句忽略
+
+        class Notice extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    username: '张大山',
+                    msg: [
+                        '新邮件',
+                        '新的代办'
+                    ]
+                }
+            };
+            render(){
+                return(
+                    <div>
+                        <h2>你好, {this.state.username}</h2>
+                        {
+                            this.state.msg.length>0 && <p>你有{this.state.msg.length}条消息</p>
+                        }
+                        <p>分别是:</p>
+                        <ul>
+                            {
+                                this.state.msg.map((item,index)=><li key={index}>{item}</li>)
+                            }
+                            </ul>
+                        </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Notice />,
+            document.getElementById('root')
+        )
+
+    </script>
+</body>
+
+</html>

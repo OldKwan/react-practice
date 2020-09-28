@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script type="text/babel">
+        class Helloname extends React.Component {
+            // 改用箭头函数, 绑定 this, 不需要调用时 fnXXXX().bind(this)
+            fnHello = ()=>{
+                alert(this.props.name);
+            };
+
+            // 传参
+            fnHello2=content=>{
+                alert(content + this.props.name)
+            }
+
+            render(){
+                return (
+                    <div>
+                        {/* 这里调用方法不需要 bind(this) */}    
+                        <input type="button" value="打招呼" onClick={this.fnHello} />                    
+                        {/* 这里调用 fnHello2方法需要传参, 则: 用一个箭头函数 "包裹一下" */}    
+                        <input type="button" value="打招呼2" onClick={()=>{this.fnHello2('Hello, ')}} />                    
+                    
+                        </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Helloname name="hank"/>,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>

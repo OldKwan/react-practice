@@ -1,0 +1,6 @@
+export const INCREMENT = 'increment'
+export const DECREMENT = 'decrement'
+export const ADD_NUMBER = 'add_number'
+export const SUB_NUMBER = 'aub_number'
+export const ADD_BANNER = 'add_banner'
+export const ADD_RECOMMEND = 'add_recommend'

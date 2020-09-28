@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script type="text/babel">
+        class Increase extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    iNum: 10
+                }
+            };
+            fnAdd = ()=>{
+                /* 
+                    修改 state的值需要用 setState
+                    setState里面可以传 一个对象, 也可以传一个函数且必须返回一个对象
+                    设置值的时候如果需要获取 state的最新值则需要用 传一个函数的方法赋值
+                 */
+
+                 /* 
+                    出于性能考虑，React 可能会把多个 setState() 调用合并成一个调用。
+                    因为 this.props 和 this.state 可能会异步更新，所以你不要依赖他们的值来更新下一个状态。
+                    可以使用函数的形式，函数的参数中传递的第一个参数是state上一个状态的值，我们可以在这个值基础上修改。
+                    错误示例: this.setState({iNum: this.state.iNum + 1});
+                             this.setState({iNum: this.state.iNum++});
+                  */
+                this.setState(state=>({iNum: state.iNum + 1}));
+            }
+
+            render(){
+                return(
+                    <div>
+                        <p>{this.state.iNum}</p>
+                        <input type="button" value="递增" onClick={this.fnAdd} />
+                        </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Increase />,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>

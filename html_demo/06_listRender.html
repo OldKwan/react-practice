@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- 
+        for(var i = 0;i<aList.length; {
+                        return (
+                            <li key={i}>{aList[i]}</li>
+                        )
+                    };
+        
+        
+                        aList.forEach((item, i)=>{
+                        return (
+                            <li key={i}>{item}</li>
+                        )
+                    })
+     -->
+
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script type="text/babel">
+        let aList = ['妇联3', '钢铁侠', '绿巨人', '蚁人', '自由行']
+
+        let oJsx = (
+            <ul>
+                {
+                    aList.map((item, i) => {
+                        return (
+                            <li key={i}>{item}</li>
+                        )
+                    })
+
+                }
+            </ul>
+        )
+
+        ReactDOM.render(
+            oJsx,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+
+</html>

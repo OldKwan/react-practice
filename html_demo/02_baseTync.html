@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script type="text/babel">
+        let nNum = 10;
+        let sStr = 'abc123456';
+        function fnRev(s){
+            return s.split('').reverse().join('');
+        }
+        let isOk = true;
+
+        let el = (
+            <div>
+                {/* jsx注释定义方法 */}
+                <h3>jsx 语法</h3>
+                {/* 插入变量以及运算 */}
+                <p>{nNum + 5}</p>
+                {/* 插入表达式 */}
+                <p>{sStr.split('').reverse().join('')}</p>
+                {/* 插入函数 */}
+                <p>{fnRev(sStr)}</p>
+                {/* 插入三元运算符 */}
+                <p>{isOk?'YES':'NO'}</p>
+
+            </div>
+        )
+
+        ReactDOM.render(
+            el,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script type="text/babel">
+        /* 
+        react 如何通过 ref获取目标 dom节点?
+            react 提供了 Refs方式:
+            Refs 通过 React.createRef()创建, 并通过 ref属性附加到 React元素(即将指针赋值给实例属性)
+         */
+        class Myform extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {};
+                // 在组件初始化时创建一个 ref对象
+                this.myref = React.createRef();
+            };
+            // 在组件挂载到页面后可以根据其实例属性获取 dom元素, 并进行逻辑操作
+            componentDidMount() {
+                console.log(this.myref.current);
+                this.myref.current.focus();
+            };
+
+            render() {
+                return (
+                    <input type="text" ref={this.myref} />
+                )
+            }
+
+        }
+
+        ReactDOM.render(
+            <Myform />,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+
+</html>
